@@ -35,10 +35,27 @@ Route::get('/about', function(){
 //     return view ('pasar'); 
 // });
 
-//Route Parameter
+// Route Parameter
 Route::get('pesan/{richeese}/{minum}/{total}',function ($mkn,$mnm,$hrg){
     return 'Makanan yang saya pesan adalah = '.$mkn.'<br>'
     .'Minumannya = '.$mnm.'<br>'
-    .'Harganya = '.$hrg;
-    
+    .'Harganya = '.$hrg;    
+});
+
+// Route Optional Parameter
+Route::get('pesanan/{a?}/{b?}/{c?}',function($mkn=null,$mnm=null,$hrg=null){
+    if(isset($mkn)){
+        $mkn = "Anda Memesan $mkn";
+        echo $mkn;
+    }
+    if(isset($mnm)){
+        $mnm = " & $mnm";
+        echo $mnm;
+    }
+    if(isset($hrg)){
+        $hrg = "dengan harga $harga";
+        echo $hrg;
+    }
+    if (!$mkn && !$mnm && !$hrg)
+    return "Anda belum memesan sesuatu";
 });
