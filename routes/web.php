@@ -59,3 +59,39 @@ Route::get('pesanan/{a?}/{b?}/{c?}',function($mkn=null,$mnm=null,$hrg=null){
     if (!$mkn && !$mnm && !$hrg)
     return "Anda belum memesan sesuatu";
 });
+
+Route::get('/testmodel', function() {
+    $testmodel = App\Post::all();
+    return $testmodel;
+    });
+
+Route::get('/testmodel1', function() {
+    $testmodel = App\Post::find(1);
+    return $testmodel;
+    });
+
+Route::get('/testmodel2', function() {
+    $testmodel = App\Post::where('title','like','%membangun visi misi keluarga%')->get();
+    return $testmodel;
+    });
+
+Route::get('/testmodel3', function() {
+    $testmodel = App\Post::find(1);
+    $testmodel->title = "Ciri Keluarga Sakinah";
+    $testmodel->save();
+    return $testmodel;
+    });
+
+Route::get('/testmodel4', function() {
+    $testmodel = App\Post::find(1);
+    $testmodel->delete();
+    return $testmodel;
+    });
+
+    Route::get('/testmodel5', function() {
+    $post = new App\Post;
+    $post->title = "7 Amalan Pembuka Jodoh";
+    $post->content = "shalat malam, sedekah, puasa sunah, silaturahmi, senyum, doa, tobat";
+    $post->save();
+    return $post;
+    });
