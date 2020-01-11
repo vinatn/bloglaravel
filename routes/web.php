@@ -95,3 +95,42 @@ Route::get('/testmodel4', function() {
     $post->save();
     return $post;
     });
+
+    // Route::get('gaji', function() {
+    // 
+    // 
+    // });
+
+    Route::get('data-gaji',function() {
+        $query = App\Penggajihan::all();
+        return $query;
+    });
+
+    Route::get('gaji-1',function() {
+        $query = App\Penggajihan::where('agama','=','islam')->get();
+        return $query;
+    });
+
+    Route::get('gaji-2',function() {
+        $query = App\Penggajihan::select('id','nama','agama')
+        ->where('agama','=','islam')->get();
+        return $query;
+    });
+
+    Route::get('gaji/{id}',function($id) {
+        $query = App\Penggajihan::findOrFail($id);
+        return $query;
+    });
+
+    Route::get('tambah-gaji',function() 
+    {
+        $gaji = New App\Penggajihan();
+        $gaji->nama = 'aulia';
+        $gaji->jabatan = 'bendahara';
+        $gaji->jk = 'perempuan';
+        $gaji->alamat = 'rancamanyar';
+        $gaji->agama = 'islam';
+        $gaji->total_gaji = '3000000';
+        $gaji->save();
+        return $gaji;
+    });
